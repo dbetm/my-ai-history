@@ -1,2 +1,4 @@
-- Aprender más de Numpy, Pandas y Matplotlib.
-- 
+- Aprender más de Numpy - 
+- Aprender más de Pandas -
+- Aprende más de Matplotlib -
+ 

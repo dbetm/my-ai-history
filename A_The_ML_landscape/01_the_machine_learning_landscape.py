@@ -43,11 +43,14 @@ country_stats.plot(kind='scatter', x='GDP per capita', y='Life satisfaction')
 plt.show()
 
 # Seleccionar un modelo lineal, en este caso regresión lineal
-model = sklearn.linear_model.LinearRegression()
+# model = sklearn.linear_model.LinearRegression()
+# Si queremos que la predicción sea por modelo
+model = sklearn.neighbors.KNeighborsRegressor(n_neighbors=3) # => [[5.76666667]]
+
 
 # Entrenamos el modelo
 model.fit(X, y)
 
 # Hacemos la predicción para el país Chipre - Cyprus
 X_new = [[22587]] # Cyprus' GDP per capita
-print(model.predict(X_new)) # outputs [[ 5.96242338]]
+print(model.predict(X_new)) # output [[ 5.96242338]]
