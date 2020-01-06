@@ -168,6 +168,23 @@ for i in range(0, 10):
 
 cv2.destroyAllWindows()
 
+input_im = cv2.imread("/home/david/datasets/catsvsdogs/perro.jpg")
+
+
+imageL = cv2.resize(input_im, None, fx=2, fy=2, 
+                        interpolation=cv2.INTER_CUBIC)
+cv2.imshow("Test image", input_im)
+
+input_im = input_im.reshape(1, 150, 150, 3)
+
+# Get prediction
+res = str(classifier.predict_classes(input_im, 1, verbose=1)[0])
+draw_test("Prediction", res, imageL)
+cv2.waitKey(0)
+
+cv2.destroyAllWindows()
+
+
 
 ## Graficando la pérdida y eficacia
 # Pérdida
