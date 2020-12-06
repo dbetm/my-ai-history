@@ -3,7 +3,7 @@
 """
 Created on Fri Jan 17 22:33:37 2020
 CNN con modelo modificado de la VGG16, más simple.
-Usado para clasificar personajes de la serie Simpons 
+Usado para clasificar personajes de la serie Simpons.
 @author: david
 """
 
@@ -49,7 +49,7 @@ train_datagen = ImageDataGenerator(
 validation_datagen = ImageDataGenerator(rescale = 1. / 255)
 
 train_generator = train_datagen.flow_from_directory(
-        train_data_dir, 
+        train_data_dir,
         target_size = (img_rows, img_cols),
         batch_size = batch_size,
         class_mode = 'categorical'
@@ -66,7 +66,7 @@ validation_generator = validation_datagen.flow_from_directory(
 model = Sequential()
 
 # First Conv-ReLU layer
-model.add(Conv2D(64, (3, 3), padding = 'same', input_shape = (img_rows, img_cols, 3)))
+model.add(Conv2D(64, (3, 3), padding='same', input_shape=(img_rows, img_cols, 3)))
 model.add(Activation('relu'))
 model.add(BatchNormalization())
 
@@ -127,7 +127,7 @@ model.add(Activation("softmax"))
 print(model.summary())
 
 # Mostrar la arquitectura de la red neuronal
-plot_model(model, to_file = "littleVGG.png", show_shapes = True, show_layer_names = True)
+plot_model(model, to_file="littleVGG.png", show_shapes=True, show_layer_names=True)
 img = mpimg.imread("littleVGG.png")
 plt.figure(figsize = (100, 70))
 imgplot = plt.imshow(img)
@@ -135,26 +135,26 @@ imgplot = plt.imshow(img)
 # Creamos los callbacks para el entrenamiento
 checkpoint = ModelCheckpoint(
         "/home/david/datasets/simpsons/models/simpsons_little_vgg.h5",
-        monitor = "val_loss",
-        mode = "min",
-        save_best_only = True,
-        verbose = 1
+        monitor="val_loss",
+        mode="min",
+        save_best_only=True,
+        verbose=1
     )
 
 earlystop = EarlyStopping(
-        monitor = 'val_loss',
-        min_delta = 0,
-        patience = 3,
-        verbose = 1,
+        monitor='val_loss',
+        min_delta=0,
+        patience=3,
+        verbose=1,
         restore_best_weights = True
     )
 
 reduce_lr = ReduceLROnPlateau(
-        monitor = 'val_loss',
-        factor = 0.2,
-        patience = 3,
-        verbose = 1,
-        min_delta = 0.00001
+        monitor='val_loss',
+        factor=0.2,
+        patience=3,
+        verbose=1,
+        min_delta=0.00001
     )
 
 # we put our call backs into a callback list
@@ -162,7 +162,7 @@ callbacks = [earlystop, checkpoint, reduce_lr]
 
 # Guardamos el modelo
 model.compile(
-        optimizer = Adam(lr = 0.01),
+        optimizer = Adam(lr=0.01),
         loss='categorical_crossentropy',
         metrics = ['accuracy']
     )
@@ -232,11 +232,11 @@ def draw_test(name, pred, im, true_label):
             im, 160, 0, 0, 300, cv2.BORDER_CONSTANT, value=BLACK
         )
     cv2.putText(
-            expanded_image, "predicted - " + pred, (20, 60), 
+            expanded_image, "predicted - " + pred, (20, 60),
             cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2
         )
     cv2.putText(
-            expanded_image, "true - " + true_label, (20, 120), 
+            expanded_image, "true - " + true_label, (20, 120),
             cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2
         )
     cv2.imshow(name, expanded_image)
@@ -266,7 +266,7 @@ true_labels = []
 
 # predicting images
 for i in range(0, 10):
-    path = '/home/david/datasets/simpsons/validation/' 
+    path = '/home/david/datasets/simpsons/validation/'
     img, final_path, true_label = getRandomImage(path, img_width, img_height)
     files.append(final_path)
     true_labels.append(true_label)
@@ -274,9 +274,9 @@ for i in range(0, 10):
     x = x * 1./255
     x = np.expand_dims(x, axis=0)
     images = np.vstack([x])
-    classes = classifier.predict_classes(images, batch_size = 10)
+    classes = classifier.predict_classes(images, batch_size=10)
     predictions.append(classes)
-    
+
 for i in range(0, len(files)):
     image = cv2.imread((files[i]))
     image = cv2.resize(image, None, fx=5, fy=5, interpolation = cv2.INTER_CUBIC)
@@ -284,7 +284,3 @@ for i in range(0, len(files)):
     cv2.waitKey(0)
 
 cv2.destroyAllWindows()
-
-
-
-
