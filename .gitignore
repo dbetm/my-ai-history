@@ -103,5 +103,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# trained models 
+# trained models
 *.h5
+
+# keras estimator folders
+keras_estimator/
