@@ -108,3 +108,6 @@ venv.bak/
 
 # keras estimator folders
 keras_estimator/
+
+# Heavy dataset
+product_reviews_dataset.csv
