@@ -36,7 +36,7 @@ dim_image = image.shape[1]
 num_classes = 10
 
 # Define model - 2-layer MLP (Input - 784, FCL 500 units [ReLu], FCL 10 units [Softmax])
-class NeuralNetwork(nn.module):
+class NeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
         self.input = nn.Linear(in_features=dim_image*dim_image, out_features=500)
@@ -49,8 +49,54 @@ class NeuralNetwork(nn.module):
 
 # Instance model
 mlp = NeuralNetwork()
+
+# Sumary of model
 print(mlp)
+
+model_parameters = filter(lambda p: p.requires_grad, mlp.parameters())
+params = sum([np.prod(p.size()) for p in model_parameters])
+print(params)
 
 # Loss and optimizer
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(lr=0.01)
+optimizer = torch.optim.SGD(mlp.parameters(), lr=0.1)
+
+# Training
+epochs = 3
+
+for epoch in range(epochs):
+    print('EPOCH: {}/{} {}'.format(epoch + 1, epochs, '-'*10))
+
+    # Iterate through train set minibatchs
+    for images, labels in tqdm(train_loader):
+        # Zero out the gradients
+        optimizer.zero_grad()
+
+        # Forward pass
+        x = images.view(-1, dim_image * dim_image) # flatten
+        y = mlp(x)
+
+        # Total loss
+        loss = criterion(y, labels)
+
+        # Backward pass
+        loss.backward()
+        optimizer.step()
+
+print("TRAINING COMPLETED")
+
+## Testing
+correct = 0
+total = len(mnist_test)
+
+with torch.no_grad():
+    # Iterate through test set minibatchs
+    for images, labels in tqdm(test_loader):
+        # Forward pass
+        x = images.view(-1, dim_image * dim_image)
+        y = mlp(x)
+
+        predictions = torch.argmax(y, dim=1)
+        correct += torch.sum((predictions == labels).float())
+
+print('Test accuracy: {}'.format(correct/total))
