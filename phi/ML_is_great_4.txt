@@ -1,6 +1,0 @@
-1) Problemas para los cuales existen soluciones que requieren mucho código y grandes listas 
-	de reglas: Un algoritmo de ML puede ofrecer un código más simple y con mejor rendimiento.
-2) Problemas complejos para los cuales no hay una buena solución y solo existen aproximaciones:
-	Las mejores técnicas de ML pueden encontrar una solución.
-3) Ambientes fluctuantes: Un sistema de ML puede adaptarse a nuevos datos.
-4) Obtener información sobre problemas complejos y grandes cantidades de datos. 

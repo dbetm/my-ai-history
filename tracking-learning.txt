@@ -1,4 +1,0 @@
-- Aprender más de Numpy - 
-- Aprender más de Pandas -
-- Aprende más de Matplotlib -
- 
