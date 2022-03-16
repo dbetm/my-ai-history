@@ -1,0 +1,57 @@
+name: Train model
+inputs:
+- {name: input_train_x, type: Dataset}
+- {name: input_train_y, type: Artifact}
+outputs:
+- {name: output_model, type: Model}
+- {name: output_history, type: Artifact}
+implementation:
+  container:
+    image: python:3.7
+    command:
+    - sh
+    - -c
+    - |2
+
+      if ! [ -x "$(command -v pip)" ]; then
+          python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip
+      fi
+
+      PIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'tensorflow' 'pandas' 'kfp==1.8.11' && "$0" "$@"
+    - sh
+    - -ec
+    - |
+      program_path=$(mktemp -d)
+      printf "%s" "$0" > "$program_path/ephemeral_component.py"
+      python3 -m kfp.v2.components.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+    - "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing\
+      \ import *\n\ndef train_model(input_train_x: Input[Dataset], input_train_y:\
+      \ Input[Artifact], \n                output_model: Output[Model], output_history:\
+      \ Output[Artifact]):\n    import pandas as pd\n    import tensorflow as tf\n\
+      \    import pickle\n\n    from tensorflow.keras.models import Model\n    from\
+      \ tensorflow.keras.layers import Dense, Input\n\n    norm_train_X = pd.read_csv(input_train_x.path)\n\
+      \n    with open(input_train_y.path, \"rb\") as file:\n        train_Y = pickle.load(file)\n\
+      \n    def model_builder(train_X):\n\n      # Define model layers.\n      input_layer\
+      \ = Input(shape=(len(train_X.columns),))\n      first_dense = Dense(units='128',\
+      \ activation='relu')(input_layer)\n      second_dense = Dense(units='128', activation='relu')(first_dense)\n\
+      \n      # Y1 output will be fed directly from the second dense\n      y1_output\
+      \ = Dense(units='1', name='y1_output')(second_dense)\n      third_dense = Dense(units='64',\
+      \ activation='relu')(second_dense)\n\n      # Y2 output will come via the third\
+      \ dense\n      y2_output = Dense(units='1', name='y2_output')(third_dense)\n\
+      \n      # Define the model with the input layer and a list of output layers\n\
+      \      model = Model(inputs=input_layer, outputs=[y1_output, y2_output])\n\n\
+      \      print(model.summary())\n\n      return model\n\n    model = model_builder(norm_train_X)\n\
+      \n    # Specify the optimizer, and compile the model with loss functions for\
+      \ both outputs\n    optimizer = tf.keras.optimizers.SGD(learning_rate=0.001)\n\
+      \    model.compile(optimizer=optimizer,\n                  loss={'y1_output':\
+      \ 'mse', 'y2_output': 'mse'},\n                  metrics={'y1_output': tf.keras.metrics.RootMeanSquaredError(),\n\
+      \                          'y2_output': tf.keras.metrics.RootMeanSquaredError()})\n\
+      \    # Train the model for 500 epochs\n    history = model.fit(norm_train_X,\
+      \ train_Y, epochs=100, batch_size=10)\n    model.save(output_model.path)\n\n\
+      \    with open(output_history.path, \"wb\") as file:\n        train_Y = pickle.dump(history.history,\
+      \ file)\n\n"
+    args:
+    - --executor_input
+    - {executorInput: null}
+    - --function_to_execute
+    - train_model
