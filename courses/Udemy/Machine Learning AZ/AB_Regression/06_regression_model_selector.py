@@ -17,7 +17,6 @@ class DataLoader:
 
     def reshape_target(self):
         self.y = self.y.reshape(len(self.y), 1)
-    
 
     def get_splitted_data(self, test_size: float = 0.2):
         x_train, x_test, y_train, y_test = train_test_split(
