@@ -26,3 +26,9 @@ The likelihood of a curve is simply multiply the outcome probabilities of some s
 2. Take the K nearest neighbors of the new data point, according to the Euclidian distance.
 3. Among these K neighbors, count the number of data points in each category.
 4. Assign the new data point to the category where you counted the most neighbors.
+
+
+## Support Vector Machine - SVM
+
+![SVM intuition](./assets/SVM_intuition.png)
+
