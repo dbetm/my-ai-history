@@ -32,3 +32,33 @@ The likelihood of a curve is simply multiply the outcome probabilities of some s
 
 ![SVM intuition](./assets/SVM_intuition.png)
 
+
+## Kernel SVM
+
+It's possible to mapping a no-linear separable dataset to a higher dimensions and be linear sepearable.
+
+**Original dataset looks like**
+![](./assets/mapping_to_higher_dimensionality_1.png)
+
+**Then**
+![](./assets/mapping_to_higher_dimensionality_2.png)
+
+
+Mapping to a higher dimensional space can be highly compute-intensive. So the kernel trick is the solution.
+
+
+**The Gaussian RBF (Radious Basic Function) Kernel**
+
+![](./assets/RBF_kernel.png)
+
+You can look that it's intuitive understant the plot and the equation.
+**X** vector are the data points and the `l_i` vector stands for "landmark" located at the center of the plot. So, when the difference between X and L is 0, `e^0` the output is 1 (as you can see). 
+Sigma define the radious of the base circle of the plot...
+
+Why does landmark is located at the "center"? In reality, we can think in more complex scenarios, where we have a data classes as islands, so when using two kernels (with their respective landmarks) we can figure out the linear separation.
+
+**Another types of kernel functions, commonly used**
+- Sigmoid Kernel
+- Polynomial Kernel
+
+
