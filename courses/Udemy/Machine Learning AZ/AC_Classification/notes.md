@@ -62,3 +62,16 @@ Why does landmark is located at the "center"? In reality, we can think in more c
 - Polynomial Kernel
 
 
+## Bayes Theorem
+
+P(A | B) = (P(B | A) * P(A)) / P(B)
+
+
+### Naive Bayes
+
+- Naive because it makes the assumption that the features are independent, in some cases isn't true.
+
+
+
+
+
