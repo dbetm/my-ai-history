@@ -85,3 +85,18 @@ The leaves define the class to be given to the dataset.
 That's the old method, it was reborn with upgrades...random forest, grandient boosting, ...
 
 
+## Random Forest
+
+Ensemble learning is like a team of ML algos to create a bigger one.
+
+A random forest is a ensemble learning method using decision trees.
+
+**Algorithm overview**
+
+1) Pick at random K data points from the Training set.
+
+2) Build the Decision Tree associated to these K data points.
+
+3) Choose the number Ntree of trees you want to build and repeat STEPS 1 & 2.
+
+4) For a new data points, make each one of your Ntre trees to predict the category to which the data points belongs, and assign the new data point to the category that wins the majority vote.
