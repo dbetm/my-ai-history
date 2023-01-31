@@ -79,3 +79,24 @@ Most of the long sequences of letters do not correspond to a natural language se
 pp. 162
 
 When the data lies on a low-dimensional manifold, it can be most natural for machine learning algorithms to represent the data in terms of coordinates on the manifold, rather than in terms of coordinates in `R^n`.
+
+---------------------------------
+
+# Deep Feedforward Networks (also aka as MLPs)
+
+A feedforward network defines a mapping `y = f(x, theta)` and learns the value of the parameters `theta` that result in the best function approximation.
+
+pp. 168
+
+
+## Example: Learning XOR
+
+Much as Turing machine's memory needs only to be able to store 0 or 1 states, we can build a universal function approximator from rectified linear functions.
+
+pp. 175
+
+## Gradient Based Learning
+
+Softmax functions are most often used as the output of a classifier, to represent the probability distribution over `n` different classes.
+
+pp. 184

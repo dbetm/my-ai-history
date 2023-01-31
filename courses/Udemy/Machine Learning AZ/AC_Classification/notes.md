@@ -72,6 +72,16 @@ P(A | B) = (P(B | A) * P(A)) / P(B)
 - Naive because it makes the assumption that the features are independent, in some cases isn't true.
 
 
+## Decision Tree
 
+The algorithm basically works making enough splits, in order to reduce entropy each time one happens.
+
+![](./assets/decision_tree_intuition.png)
+
+![](./assets/decision_tree_example.png)
+
+The leaves define the class to be given to the dataset.
+
+That's the old method, it was reborn with upgrades...random forest, grandient boosting, ...
 
 
