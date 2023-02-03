@@ -100,3 +100,33 @@ A random forest is a ensemble learning method using decision trees.
 3) Choose the number Ntree of trees you want to build and repeat STEPS 1 & 2.
 
 4) For a new data points, make each one of your Ntre trees to predict the category to which the data points belongs, and assign the new data point to the category that wins the majority vote.
+
+## Cumulative Accuracy Profile - CAP Curve
+
+A more robust way to measure effectiveness of a model than the accuracy.
+
+![](./assets/example_CAP_curve.png)
+
+
+The basic idea is to think that the wider the area betwen the top curve and the linear curve, the better the model.
+
+CAP != ROC (Receiver Operating Characteristic).
+
+
+How to analyze the CAP?
+
+This is a simple rule that you can follow to know how good is the model given its CAP.
+
+![](./assets/CAP_analysis.png)
+
+
+# Pros and cons of the models
+
+
+![](./assets/pros_and_cons_classification_models.png)
+
+The assumptions of the logistic regression model are:
+- Linearity in the logit for continuous variables.
+- Absence of multicollinearity.
+- Lack of strongly influential outliers.
+
