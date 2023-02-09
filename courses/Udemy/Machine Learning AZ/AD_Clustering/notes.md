@@ -38,3 +38,38 @@ In reality, this algo only decreases the probability of the random initializatio
 
 ## Hierarchical Clustering
 
+Same as K-means but different process. There are two approaches: agglomerative and divisive (which is actually a kinda reverse process of the former).
+
+**Agglomerative HC**
+1) Make each data point a single-point cluster -> that forms N clusters.
+2) Take the two closest data points and make them one cluster -> that forms N-1 clusters.
+3) Take the two closest clusters and make them one cluster -> that forms N-2 clusters.
+4) Repeat step 3 until there is only one cluster.
+5) The end.
+
+Note: In this process we will be saving a dendogram.
+
+Distances between two clusters (you can choose any of them):
+
+- Option 1: Closest points.
+- Option 2: Furthest points.
+- Option 3: Average distance.
+- Option 4: Distance between centroids.
+
+
+**What is a dendogram?**
+
+It's like the memory of each single step of the algorithm. Basically registers the di-simililarity (euclidian distance) bewteen two clusters (or data points) when they are about to be collapsed into one single cluster.
+
+Then we set a threshold for the di-simililarity choosen by graphically inspection, and every "collapse" with di-simililarity above the threshold can be indicathe the number of clusters to consider (but thinking graphically, in reality is only the number of vertical lines crossed by the threshold which will be a horizontal line and the collapses - bar plots).
+
+**What is the optimal # of clusters?**
+
+Given all the vertical lines, the approach is the select the largest one, because the threshold line is probable doesn't cross the horizontal lines of the bar plots representing the collapses between clusters. Check the notebook to understand better this point.
+
+
+![](./assets/dendrogram_illustration.png)
+
+![](./assets/dendrogram_with_threshold.png)
+
+_Images by Prasad Pai_
