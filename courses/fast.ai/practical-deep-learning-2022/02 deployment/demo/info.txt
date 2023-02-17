@@ -1,0 +1,10 @@
+# To deploy you need to create a Space in Hugging Face
+
+https://huggingface.co/docs/hub/repositories-getting-started
+
+Note: Important to use GIT-LFS to upload the model as a large file.
+
+
+# Alternatively you can use Binder:
+
+https://mybinder.org/
