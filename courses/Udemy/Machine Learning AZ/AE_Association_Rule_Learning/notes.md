@@ -48,3 +48,21 @@ It's a slow algorithm, because explores all the combinations between each possib
 4) Sort the rules by decreasing lift.
 
 
+## Ectlat intuition
+
+This approach only has support (different from the apriori algo.).
+
+**Support** - fractions of cases to support our hyphotesis first part.
+
+Example
+
+1) Market Basket Optimisation:
+
+    `support(I) = # transactions containing I / # transactions`
+
+
+**Steps of the algorithm**
+
+1) Set a minumum support.
+2) Take all the subsets in transactions having higher than threshold support.
+3) Sort these subsets by decreasing support.
