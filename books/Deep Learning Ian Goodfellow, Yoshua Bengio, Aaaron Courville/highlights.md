@@ -100,3 +100,28 @@ pp. 175
 Softmax functions are most often used as the output of a classifier, to represent the probability distribution over `n` different classes.
 
 pp. 184
+
+In general, we can think of the neural network as representing a function `f(x;θ)`.
+The outputs of this function are not direct predictions of the value `y`. Instead,
+`f(x;θ) = ω` provides the parameters for a distribution over `y`. Our loss function
+can then be interpreted as `− log p(y; ω(x))`.
+
+pp. 188
+
+## Architecture Design
+
+The Universal Approximation Theorem states that a feedforward network with a linear output layer and at least one hidden layer with any "squashing" activation function can approximate any Borel measurable function (any continous function on a closed and bounded subset of R²) from one finite-dimensional space to another with any desired non-zero amount of error, provided that the network is given enough hidden units.
+
+pp. 198
+
+Empirically, greather depth does seem to result in better generalization for a wide variety of tasks.
+
+## Back-propagation and other differentiation algorithms
+
+In learning algos., the gradient we most often require is the gradient of the cost function with respect to the parameters.
+
+## Historical notes
+
+Feedforward networks can be seen as efficient nonlinear functions approximators based on using gradient descent to minimize the error in a function approximation.
+
+pp. 224
