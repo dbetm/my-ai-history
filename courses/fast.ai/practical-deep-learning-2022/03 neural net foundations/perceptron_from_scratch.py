@@ -126,7 +126,7 @@ def train(x: list, y: list, epochs: int = 5) -> List[float]:
     return [w[0], w[1], b]
 
 
-def inference(model: List[float], x: List[float], expected: int):
+def predict(model: List[float], x: List[float], expected: int):
     w_0, w_1, b = model
 
     r0 = w_0 * x[0]
@@ -159,4 +159,4 @@ if __name__ == "__main__":
     print("Inference")
 
     for (x0, x1), label_expected in zip(x, y):
-        inference(model, (x0, x1), label_expected)
+        predict(model, (x0, x1), label_expected)

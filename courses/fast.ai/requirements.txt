@@ -1,3 +1,4 @@
 fastchan
 fastai
+fastbook
 ipywidgets
