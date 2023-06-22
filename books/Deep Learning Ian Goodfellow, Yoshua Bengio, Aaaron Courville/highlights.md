@@ -125,3 +125,7 @@ In learning algos., the gradient we most often require is the gradient of the co
 Feedforward networks can be seen as efficient nonlinear functions approximators based on using gradient descent to minimize the error in a function approximation.
 
 pp. 224
+
+# Regularization for Deep Learning
+
+## 
