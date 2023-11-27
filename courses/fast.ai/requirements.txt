@@ -2,3 +2,4 @@ fastchan
 fastai
 fastbook
 ipywidgets
+seaborn==0.13.0
