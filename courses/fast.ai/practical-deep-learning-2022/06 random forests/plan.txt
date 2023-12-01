@@ -1,0 +1,5 @@
+
+
+1) Read article - How to explain Gradient Boosting: https://explained.ai/gradient-boosting/
+2) Review Chapter 9 (of book)
+3) Review notebooks, road to the top: https://www.kaggle.com/code/jhoward/first-steps-road-to-the-top-part-1
