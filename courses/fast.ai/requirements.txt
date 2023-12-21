@@ -1,7 +1,7 @@
 dtreeviz==1.3.4
 fastchan
-fastai
-fastbook
-ipywidgets
+fastai==2.7.10
+fastbook==0.0.29
+ipywidgets==7.7.5
 seaborn==0.13.0
 kaggle==1.5.16
