@@ -105,6 +105,7 @@ venv.bak/
 
 # trained models
 *.h5
+*.pth
 
 # keras estimator folders
 keras_estimator/
