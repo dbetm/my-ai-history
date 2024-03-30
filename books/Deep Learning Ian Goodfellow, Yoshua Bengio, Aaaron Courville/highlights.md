@@ -128,4 +128,18 @@ pp. 224
 
 # Regularization for Deep Learning
 
-## 
+## Dataset Augmentation
+
+The best way to make a machine learning model generalize better is to train it on more data. One way to get around this problem is to create fake data and add it to the training set.
+
+pp. 240
+
+A classifier needs to take a complicated, high dimensional input **x** and summarize it with a single category identity **y**. This means that the main task facing a classifier is to be invariant to a wide variety of transformation.
+
+pp. 240
+
+## Semi-supervised learning
+
+In DL, semi-supervised learning usually refers to learning a representation `h=f(x)`.
+
+pp. 243
