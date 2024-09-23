@@ -110,6 +110,9 @@ venv.bak/
 # keras estimator folders
 keras_estimator/
 
+# Misc
+.DS_Store
+
 # Heavy datasets
 product_reviews_dataset.csv
 Pytorch/curso Uni de Duke - Intro ML/NLP/.data
