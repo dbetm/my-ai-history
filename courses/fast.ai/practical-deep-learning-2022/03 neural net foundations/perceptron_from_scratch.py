@@ -1,6 +1,6 @@
 """This practical exercise intends to build a simple one-layer neural network 
 (logistic regression) using only Python, using backprop to update the 
-weights and bias value. Explicit code to understand to low-level the 
+weights and bias value. Explicit code to understand at low-level the 
 flow of information.
 
 Problem:
