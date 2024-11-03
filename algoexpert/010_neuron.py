@@ -97,6 +97,57 @@ class Neuron:
         return 1 / (1 + math.exp(-x))
 
 
+class Neuron2:
+    """Proposal"""
+    # Don't change anything in the `__init__` function.
+    def __init__(self, examples):
+        np.random.seed(42)
+        # Three weights: one for each feature and one more for the bias.
+        self.weights = np.random.normal(0, 1, 3 + 1)
+        self.examples = examples
+        self.train()
+
+    # Don't use regularization.
+    # Use mini-batch gradient descent.
+    # Use the sigmoid activation function.
+    # Use the defaults for the function arguments.
+    def train(self, learning_rate=0.01, batch_size=10, epochs=200):
+        for epoch in range(epochs):
+            for batch_window in range(len(self.examples) // batch_size):
+                offset = batch_window * batch_size
+                mini_batch = self.examples[0 + offset : offset + batch_size]
+                predictions_labels = [
+                    {"prediction": self.predict(example["features"]), "label": example["label"]}
+                    for example in mini_batch
+                ]
+                gradients = self.__get_gradients(mini_batch, predictions_labels)
+                self.weights = self.weights - [learning_rate * gradient for gradient in gradients]
+
+    # Return the probability—not the corresponding 0 or 1 label.
+    def predict(self, features):
+        model_inputs = features + [1] # bias
+        wTx = 0
+        for i, x in enumerate(model_inputs):
+            wTx += self.weights[i] * x
+
+        return 1 / (1 + math.exp(-wTx))
+
+    def __get_gradients(self, batch: list, predictions_labels: list) -> list:
+        errors = [
+            pred_label["prediction"] - pred_label["label"] for pred_label in predictions_labels
+        ]
+        gradients = [0] * len(self.weights)
+        for example_id, example in enumerate(batch):
+            features = example["features"] + [1] # bias is [1]
+
+            for feature_i, feature in enumerate(features):
+                gradients[feature_i] = gradients[feature_i] + errors[example_id] * feature
+
+        # since gradients are accumulated by mini batch, we need to get the avg
+        gradients = [gradient / len(batch) for gradient in gradients]
+
+        return gradients
+
 
 
 if __name__ == "__main__":
