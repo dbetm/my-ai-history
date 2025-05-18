@@ -5,6 +5,7 @@ import numpy as np
 
 
 class Neuron:
+    """My solution"""
     # Don't change anything in the `__init__` function.
     def __init__(self, examples):
         np.random.seed(42)
