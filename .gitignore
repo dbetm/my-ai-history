@@ -116,3 +116,6 @@ keras_estimator/
 # Heavy datasets
 product_reviews_dataset.csv
 Pytorch/curso Uni de Duke - Intro ML/NLP/.data
+
+# data misc
+courses/deeplearning-ai/building-and-evaluating-advanced-rag/IPCC_AR6_WGII_Chapter03.pdf
